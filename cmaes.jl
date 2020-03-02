@@ -2,11 +2,11 @@ using LinearAlgebra
 using Plots
 using Printf
 using Dates
-# Adaptet from
+# Adapted from
 # Hansen, N. :The CMA Evolution Strategy: A Tutorial. 2016
 # https://arxiv.org/pdf/1604.00772.pdf
 # from http://cma.gforge.inria.fr/purecmaes.m
-# Adaptet from https://github.com/Staross/JuliaCMAES/blob/master/cmaes.jl
+# Adapted from https://github.com/Staross/JuliaCMAES/blob/master/cmaes.jl
 
 """
 Implementation of the (μ/μ,λ)-CMA-ES (Hansen 2016)
