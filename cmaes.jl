@@ -7,10 +7,11 @@ using Dates
 # https://arxiv.org/pdf/1604.00772.pdf
 # from http://cma.gforge.inria.fr/purecmaes.m
 # Adapted from https://github.com/Staross/JuliaCMAES/blob/master/cmaes.jl
+# 03.03.2020
 
 """
 Implementation of the (μ/μ,λ)-CMA-ES (Hansen 2016)
-cmaes_d(f ,xᵢ ,σ [ ,λ ,μ ,fevalₛ])
+cmaes(f ,xᵢ ,σ [ ,λ ,μ ,fevalₛ])
 * f::Function - Fitness function to optimize
 * xᵢ::AbstractVector - Initial point of search
 * σ::Union{Number,AbstractVector} - Initial stepsize(s)
@@ -22,6 +23,13 @@ for details consult:
 N. Hansen: The CMA Evolution Strategy: A Tutorial. 2016
 https://arxiv.org/pdf/1604.00772.pdf
 # Retruns
+ (qmin,xmin,γ,feval,N)
+ * qmin  - Fitness of best last offspring
+ * xmin - Best last offspring
+ * γ - Number of generations
+ * feval - Number of function evaluations
+ * N - Problem dimension
+
 # Examples
     res=cmaes(x->sum(x.^2),ones(10),0.1)
 """
@@ -49,7 +57,7 @@ function cmaes(f::Function, 𝒙ᵢ::AbstractVector, 𝝈::Union{AbstractVector,
 
     fᵢ = f(𝒙ᵢ)
     if(! (typeof(fᵢ) <: AbstractFloat) )
-        error("Q should return a scalar Float")
+        error("f should return a scalar Float")
     end
 
     𝒎 = 𝒙ᵢ
