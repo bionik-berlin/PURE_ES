@@ -2,3 +2,42 @@
 title: "R to Julia communication"
 output: html_notebook
 ---
+```{r}
+test1<-read.csv("test1.csv")
+#View(test1)
+```
+
+```{r}
+library(dplyr)
+library(psych)
+describe(test1[,2:3])
+```
+```{r}
+library(ggplot2)
+library(cowplot)
+p1<-ggplot(test1 , aes(x = x1))+geom_histogram(binwidth=10)
+p2<-ggplot(test1 , aes(x = x2))+geom_histogram(binwidth=(max(test1$x2)-min(test1$x2))/5)
+plot_grid(p1,p2,labels="AUTO")
+```
+```{r}
+  r<- data.frame(xx=as.factor(c(rep("λ=27",nrow(test1)),rep("λ=10",nrow(test1)))),yy=c(test1$x1,test1$x2))
+ggplot(r, aes(x = xx,y=yy))+geom_boxplot()+labs(x="λ")
+#p1<-ggplot(test1 , aes(x = x1))+geom_boxplot()
+#p2<-ggplot(test1 , aes(x = x2))+geom_boxplot()
+#plot_grid(p1,p2,nrow=2,labels="AUTO")
+```
+
+
+
+```{r}
+library("car")
+par(mfrow=c(1,2))
+qqPlot(test1$x1)
+qqPlot(test1$x2)
+
+```
+
+```{r}
+ks.test(test1$x1,"pnorm")
+```
+
