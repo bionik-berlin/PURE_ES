@@ -23,7 +23,7 @@ function es_msr(x₀,λ,σ₀,qₜ,N)
     (γ,xₑ,qₑ,σ)
 end
 
-REP=150
+REP=250
 N=100
 G1=[]
 G2=[]
@@ -34,7 +34,7 @@ for r=1:REP
     push!(G1,res1[1])
     push!(G2,res2[1])
 end
-df = DataFrame(id = 1:length(G), x1 = G1, x2=G2)
+df = DataFrame(id = 1:length(G1), x1 = G1, x2=G2)
 if (pwd()=="/home/iskl")
     cd("github/PURE_ES")
 end

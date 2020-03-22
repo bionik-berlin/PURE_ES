@@ -16,7 +16,7 @@ describe(test1[,2:3])
 library(ggplot2)
 library(cowplot)
 p1<-ggplot(test1 , aes(x = x1))+geom_histogram(binwidth=10)
-p2<-ggplot(test1 , aes(x = x2))+geom_histogram(binwidth=(max(test1$x2)-min(test1$x2))/5)
+p2<-ggplot(test1 , aes(x = x2))+geom_histogram(binwidth=10)
 plot_grid(p1,p2,labels="AUTO")
 ```
 ```{r}
